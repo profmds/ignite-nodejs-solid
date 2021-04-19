@@ -14,6 +14,11 @@ class ListAllUsersUseCase {
     if (!findUser) {
       throw new Error("User not found!");
     }
+
+    if (!findUser.admin) {
+      throw new Error("Unauthorized user!");
+    }
+
     const userList = this.usersRepository.list();
 
     return userList;
